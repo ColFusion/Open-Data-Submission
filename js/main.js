@@ -57,8 +57,4 @@ $(function () {
             }
         });
     })
-
-    // $('#fileupload').bind('fileuploadadd', function (e, data){
-    //         alert("hi there");             
-    // });
 });
