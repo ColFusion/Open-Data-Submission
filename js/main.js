@@ -56,5 +56,11 @@ $(function () {
                 data.submit();
             }
         });
-    })
+    });
+
+    var form = $('#fileupload').parsley();
+
+    console.log("result from parsley: " + form.isValid());
+
+    form.validate();
 });

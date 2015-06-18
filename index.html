@@ -27,6 +27,7 @@
 <link rel="stylesheet" href="css/style.css">
 <!-- blueimp Gallery styles -->
 <link rel="stylesheet" href="css/vendor/blueimp-gallery.min.css">
+<link rel="stylesheet" href="css/vendor/parsley.css">
 <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
 <link rel="stylesheet" href="css/jquery.fileupload.css">
 <link rel="stylesheet" href="css/jquery.fileupload-ui.css">
@@ -42,37 +43,37 @@
     <form id="fileupload" action="server/" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="title">Title of dataset</label>
-            <input type="text" class="form-control" id="title" placeholder="Title">
+            <input type="text" class="form-control" id="title" name="title" placeholder="Title" required>
         </div>
 
         <div class="form-group">
             <label for="description">Brief description</label>
-            <textarea id="description" class="form-control" rows="3" placeholder="Description"></textarea>
+            <textarea id="description" name="description" class="form-control" rows="3" placeholder="Description" required></textarea>
         </div>
 
         <div class="form-group">
             <label for="author">Author/contributor</label>
-            <input type="text" class="form-control" id="author" placeholder="Author/contributor">
+            <input type="text" class="form-control" id="author" name="author" placeholder="Author/contributor" data-parsley-trigger="change" required>
         </div>
 
         <div class="form-group">
             <label for="email">Contact email</label>
-            <input type="email" class="form-control" id="email" placeholder="Email">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
         </div>
 
         <div class="form-group">
             <label for="time"><span class="text-muted">[Recommended but not required]</span> Time period the dataset covers</label>
-            <input type="text" class="form-control" id="time" placeholder="Time period the dataset covers">
+            <input type="text" class="form-control" id="time" name="time" placeholder="Time period the dataset covers">
         </div>
 
         <div class="form-group">
             <label for="geo"><span class="text-muted">[Recommended but not required]</span> Geographic information</label>
-            <input type="text" class="form-control" id="geo" placeholder="Geographic information">
+            <input type="text" class="form-control" id="geo" name="geo" placeholder="Geographic information">
         </div>
 
         <div class="form-group">
             <label for="source"><span class="text-muted">[Recommended but not required]</span> Source</label>
-            <input type="text" class="form-control" id="source" placeholder="Source">
+            <input type="text" class="form-control" id="source" name="source" placeholder="Source">
         </div>
 
         <br/>
@@ -114,10 +115,10 @@
 
         <div class="checkbox">
             <label>
-              <input type="checkbox"> By checking this box, you agree to <a href="#" data-toggle="modal" data-target="#userAgreementModal">Collaborative for Historical Information and Analysis User Agreement</a>.
+              <input type="checkbox" id="agree" name="agree" required> By checking this box, you agree to <a href="#" data-toggle="modal" data-target="#userAgreementModal">Collaborative for Historical Information and Analysis User Agreement</a>.
             </label>
         </div>
-
+        <br/>
         <button type="button" id="submit" class="btn btn-primary">
             <i class="glyphicon glyphicon-upload"></i>
             <span>Submit</span>
@@ -253,6 +254,7 @@
 <script src="js/vendor/bootstrap.min.js"></script>
 <!-- blueimp Gallery script -->
 <script src="js/vendor/jquery.blueimp-gallery.min.js"></script>
+<script src="js/vendor/parsley.min.js"></script>
 <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
 <script src="js/jquery.iframe-transport.js"></script>
 <!-- The basic File Upload plugin -->
