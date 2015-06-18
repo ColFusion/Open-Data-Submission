@@ -80,13 +80,18 @@ $(function () {
         form.validate();
 
         if (!form.isValid()) {
+            $("#errorMessageNextToSubmit").show();
+
             return;
         }
         
+        $("#errorMessageNextToSubmit").hide();
+
         submitMetadata();
     });
 
     $('#fileupload').bind('fileuploadstop', function(e, data) {
-        debugger;
+        $('#formContainer').hide();
+        $('#submitMessage').show();
     });
 });

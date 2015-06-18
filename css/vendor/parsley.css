@@ -32,3 +32,7 @@ label.parsley-error {
 .parsley-errors-list.filled {
   opacity: 1;
 }
+
+.parsley-required {
+  background-color: #F2DEDE;
+}
