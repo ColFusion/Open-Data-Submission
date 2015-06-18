@@ -36,6 +36,30 @@ class DbHandler {
 
 		return $id;
 	}
+
+	public function getAll() {
+		$sql = "SELECT * from metadata";
+
+		$conn = $this->getConnection();
+
+		$rows = array();
+
+		try {
+			$result = $conn->query($sql);
+			
+			while($row = $result->fetch_assoc()) {
+			    $rows[] = $row;
+			}
+		}
+		catch(Exception $e) {			
+			$conn->close();
+			die("Something happened while getting metadata." . $e->getMessage());
+		}
+		
+		$conn->close();
+
+		return $rows;
+	}
 }
 
 ?>
