@@ -49,6 +49,14 @@ $(function () {
     });
 
     $("#submit").click(function(){
+        var form = $('#fileupload').parsley();
+
+        form.validate();
+
+        if (!form.isValid()) {
+            return;
+        }
+        
         $(".files").find(".template-upload").each(function(){
             debugger;
             var data = $(this).data('data');
@@ -57,10 +65,4 @@ $(function () {
             }
         });
     });
-
-    var form = $('#fileupload').parsley();
-
-    console.log("result from parsley: " + form.isValid());
-
-    form.validate();
 });
