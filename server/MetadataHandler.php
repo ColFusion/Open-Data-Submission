@@ -7,7 +7,7 @@ class MetadataHandler {
 		$dbHandler = new DbHandler();
 
 		$id = $dbHandler->saveMetadata($title, $description, $author, $email, $time, $geo, $source);
-		echo json_encode('blublue' . $id);
+		return $id;
 	}
 }
 

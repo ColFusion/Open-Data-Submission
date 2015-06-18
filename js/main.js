@@ -48,6 +48,32 @@ $(function () {
             .call(this, $.Event('done'), {result: result});
     });
 
+    function submitMetadata() {
+        var formData = $('#fileupload').serializeArray();
+
+        $.ajax({            
+            url: $('#fileupload').fileupload('option', 'url') + '?payload=metadata',
+            method: 'POST',
+            dataType: 'json',
+            data: formData
+        }).done(function (result) {
+            var id = JSON.parse(result);
+            console.log(id);
+            submitFiles(id);
+        });
+    }
+
+    function submitFiles(id) {
+        $(".files").find(".template-upload").each(function(){
+            debugger;
+            var data = $(this).data('data');
+            if (data && data.submit) {
+                data.formData = id;
+                data.submit();
+            }
+        });
+    }   
+
     $("#submit").click(function(){
         var form = $('#fileupload').parsley();
 
@@ -57,25 +83,10 @@ $(function () {
             return;
         }
         
-        var formData = $('#fileupload').serializeArray();
+        submitMetadata();
+    });
 
-        $.ajax({            
-            url: $('#fileupload').fileupload('option', 'url') + '?payload=metadata',
-            method: 'POST',
-            dataType: 'json',
-            data: formData
-        }).done(function (result) {
-            console.log(result);
-        });
-
-        console.log(formData);
-
-        $(".files").find(".template-upload").each(function(){
-            debugger;
-            var data = $(this).data('data');
-            if (data && data.submit) {
-                data.submit();
-            }
-        });
+    $('#fileupload').bind('fileuploadstop', function(e, data) {
+        debugger;
     });
 });

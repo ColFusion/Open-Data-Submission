@@ -16,9 +16,12 @@ require('UploadHandler.php');
 
 if (isset($_GET["payload"]) && trim($_GET["payload"]) === 'metadata') {
 	$metadata_handler = new MetadataHandler();
-	$metadata_handler->saveMetadata($_POST["title"], $_POST["description"], $_POST["author"], $_POST["email"], $_POST["time"], $_POST["geo"], $_POST["source"]);
+	$id = $metadata_handler->saveMetadata($_POST["title"], $_POST["description"], $_POST["author"], $_POST["email"], $_POST["time"], $_POST["geo"], $_POST["source"]);
+
+	echo json_encode('{"id":' . $id . '}');
 }
-else {
+else {	
 	$upload_handler = new UploadHandler();
+	$upload_handler->initialize();	
 }
 ?>

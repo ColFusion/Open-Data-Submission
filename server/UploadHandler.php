@@ -12,6 +12,7 @@
 
 class UploadHandler
 {
+    protected $id;
 
     protected $options;
 
@@ -165,12 +166,14 @@ class UploadHandler
         if ($error_messages) {
             $this->error_messages = $error_messages + $this->error_messages;
         }
-        if ($initialize) {
-            $this->initialize();
-        }
+        // if ($initialize) {
+        //     $this->initialize();
+        // }
     }
 
-    protected function initialize() {
+    public function initialize($id = 1) {
+        $this->id = $id;
+
         switch ($this->get_server_var('REQUEST_METHOD')) {
             case 'OPTIONS':
             case 'HEAD':
@@ -211,10 +214,19 @@ class UploadHandler
     }
 
     protected function get_user_path() {
-        if ($this->options['user_dirs']) {
-            return $this->get_user_id().'/';
+        // if ($this->options['user_dirs']) {
+        //     return $this->get_user_id().'/';
+        // }
+        
+        if (isset($_GET["id"])) {
+            return $_GET["id"] . "/";
         }
-        return '';
+
+        if (isset($_POST["id"])) {
+            return $_POST["id"] . "/";
+        }
+
+        die("Id is not set");
     }
 
     protected function get_upload_path($file_name = null, $version = null) {
@@ -1305,10 +1317,6 @@ class UploadHandler
     }
 
     public function post($print_response = true) {
-        if ($this->get_query_param('payload') === 'metadata') {
-            return $this->generate_response("blabla", $print_response);
-        }
-
         if ($this->get_query_param('_method') === 'DELETE') {
             return $this->delete($print_response);
         }

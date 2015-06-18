@@ -1,13 +1,10 @@
 <?php
 
-class DbHandler {
-	const servername = "localhost";
-	const username = "";
-	const password = "";
-	const database_name = "";
+require_once('DbCreds.php');
 
+class DbHandler {
 	private function getConnection() {
-		$conn = new mysqli(self::servername, self::username, self::password, self::database_name);
+		$conn = new mysqli(SERVERNAME, USERNAME, PASSWORD, DATABASE_NAME);
 
 		// Check connection
 		if ($conn->connect_error) {
