@@ -188,7 +188,7 @@ class UploadHandler
                 $this->post($this->options['print_response']);
                 break;
             case 'DELETE':
-                $this->delete($this->options['print_response']);
+                //$this->delete($this->options['print_response']);
                 break;
             default:
                 $this->header('HTTP/1.1 405 Method Not Allowed');
@@ -1317,9 +1317,9 @@ class UploadHandler
     }
 
     public function post($print_response = true) {
-        if ($this->get_query_param('_method') === 'DELETE') {
-            return $this->delete($print_response);
-        }
+        // if ($this->get_query_param('_method') === 'DELETE') {
+        //     return $this->delete($print_response);
+        // }
         $upload = $this->get_upload_data($this->options['param_name']);
         // Parse the Content-Disposition header, if available:
         $content_disposition_header = $this->get_server_var('HTTP_CONTENT_DISPOSITION');

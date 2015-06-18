@@ -33,6 +33,7 @@ CREATE TABLE `metadata` (
   `time` varchar(500) DEFAULT NULL,
   `geo` varchar(500) DEFAULT NULL,
   `source` varchar(500) DEFAULT NULL,
+  `submissionDate` DATETIME NULL DEFAULT NOW(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

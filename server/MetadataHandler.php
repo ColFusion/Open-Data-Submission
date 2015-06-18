@@ -9,6 +9,13 @@ class MetadataHandler {
 		$id = $dbHandler->saveMetadata($title, $description, $author, $email, $time, $geo, $source);
 		return $id;
 	}
+
+	public function getAll() {
+		$dbHandler = new DbHandler();
+
+		$allSubmissions = $dbHandler->getAll();
+		return $allSubmissions;
+	}
 }
 
 ?>
