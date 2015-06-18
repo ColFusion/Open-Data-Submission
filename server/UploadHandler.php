@@ -1305,6 +1305,10 @@ class UploadHandler
     }
 
     public function post($print_response = true) {
+        if ($this->get_query_param('payload') === 'metadata') {
+            return $this->generate_response("blabla", $print_response);
+        }
+
         if ($this->get_query_param('_method') === 'DELETE') {
             return $this->delete($print_response);
         }

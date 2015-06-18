@@ -57,6 +57,19 @@ $(function () {
             return;
         }
         
+        var formData = $('#fileupload').serializeArray();
+
+        $.ajax({            
+            url: $('#fileupload').fileupload('option', 'url') + '?payload=metadata',
+            method: 'POST',
+            dataType: 'json',
+            data: formData
+        }).done(function (result) {
+            console.log(result);
+        });
+
+        console.log(formData);
+
         $(".files").find(".template-upload").each(function(){
             debugger;
             var data = $(this).data('data');

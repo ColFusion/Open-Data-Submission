@@ -11,6 +11,14 @@
  */
 
 error_reporting(E_ALL | E_STRICT);
+require('MetadataHandler.php');
 require('UploadHandler.php');
-$upload_handler = new UploadHandler();
+
+if (isset($_GET["payload"]) && trim($_GET["payload"]) === 'metadata') {
+	$metadata_handler = new MetadataHandler();
+	$metadata_handler->saveMetadata($_POST["title"], $_POST["description"], $_POST["author"], $_POST["email"], $_POST["time"], $_POST["geo"], $_POST["source"]);
+}
+else {
+	$upload_handler = new UploadHandler();
+}
 ?>
