@@ -65,7 +65,6 @@ $(function () {
 
     function submitFiles(id) {
         $(".files").find(".template-upload").each(function(){
-            debugger;
             var data = $(this).data('data');
             if (data && data.submit) {
                 data.formData = id;
