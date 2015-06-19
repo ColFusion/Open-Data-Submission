@@ -40,6 +40,16 @@ class DbHandler {
 	public function getAll() {
 		$sql = "SELECT * from metadata";
 
+		return $this->queryToArray($sql);
+	}
+
+	public function getAdminsEmails() {
+		$sql = "SELECT * from admin_emails";
+
+		return $this->queryToArray($sql);
+	}
+
+	private function queryToArray($sql) {
 		$conn = $this->getConnection();
 
 		$rows = array();
@@ -53,7 +63,8 @@ class DbHandler {
 		}
 		catch(Exception $e) {			
 			$conn->close();
-			die("Something happened while getting metadata." . $e->getMessage());
+			//TODO: should probably throw an exception
+			throw new Exception("Something happened while getting metadata." . $e->getMessage());
 		}
 		
 		$conn->close();
