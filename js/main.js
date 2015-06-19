@@ -14,6 +14,8 @@
 $(function () {
     'use strict';
 
+    var failed = false;
+
     // Initialize the jQuery File Upload widget:
     $('#fileupload').fileupload({
         // Uncomment the following to send cross-domain cookies:
@@ -59,7 +61,12 @@ $(function () {
         }).done(function (result) {
             var id = JSON.parse(result);
             console.log(id);
+
+            failed = false;
             submitFiles(id);
+        })
+        .fail(function(e) {
+            alert("Something went wrong. Please try again or let us know.");
         });
     }
 
@@ -90,12 +97,20 @@ $(function () {
     });
 
     $('#fileupload').bind('fileuploadstop', function(e, data) {
-        $('#formContainer').hide();
-        $('#submitMessage').show();
+        if (!failed) {
+            $('#formContainer').hide();
+            $('#submitMessage').show();
+        } 
+        else {
+            alert("Something went wrong. Please try again or let us know.");
+        }     
+    });
+
+    $('#fileupload').bind('fileuploadfail', function(e, data) {
+        failed = true;        
     });
 
     window.ParsleyValidator.addValidator('minfiles', function validateFiles(value, requirement) {
-        debugger;
         return $('.files tr').length >= 1;
     }, 512)
     .addMessage('en', 'minfiles', 'At least one file must be added.');
