@@ -74,7 +74,7 @@ $(function () {
     }   
 
     $("#submit").click(function(){
-        var form = $('#fileupload').parsley();
+        // var form = $('#fileupload').parsley();
 
         form.validate();
 
@@ -93,4 +93,12 @@ $(function () {
         $('#formContainer').hide();
         $('#submitMessage').show();
     });
+
+    window.ParsleyValidator.addValidator('minfiles', function validateFiles(value, requirement) {
+        debugger;
+        return $('.files tr').length >= 1;
+    }, 512)
+    .addMessage('en', 'minfiles', 'At least one file must be added.');
+
+    window.form = $('#fileupload').parsley();
 });

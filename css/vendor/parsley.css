@@ -33,6 +33,8 @@ label.parsley-error {
   opacity: 1;
 }
 
-.parsley-required {
+.parsley-required,
+.parsley-type,
+.parsley-minfiles {
   background-color: #F2DEDE;
 }
