@@ -18,7 +18,19 @@ class MailHandler {
 		$subject = $this->constructEmailSubject($id);
 		$body = $this->constructEmailBody($id, $title, $description, $author, $email, $time, $geo, $source);
 
-		mail($emails_comma_separated, $subject, $body);
+		$headers = $this->makeHeaders();
+
+		mail($emails_comma_separated, $subject, $body, $headers);
+	}
+
+	private function makeHeaders() {
+		$headers   = array();
+		$headers[] = "MIME-Version: 1.0";
+		$headers[] = "Content-type: text/plain; charset=iso-8859-1";
+		$headers[] = "From: CHIA/Col*Fusion Open Data Submission <no-reply@colfusion.exp.sis.pitt.edu>";
+		$headers[] = "X-Mailer: PHP/".phpversion();
+
+		return implode("\r\n", $headers);
 	}
 
 	private function recieversString($emails) {
