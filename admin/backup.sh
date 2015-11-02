@@ -3,10 +3,10 @@ set -o errexit
 
 echo "Running backup.sh script as user: " $(whoami)
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/.. && pwd )"
-SERVER_DIR="${SCRIPT_DIR}/../server"
+ODS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/.. && pwd )"
+SERVER_DIR="${ODS_DIR}/server"
 
-BACKUPS="${SCRIPT_DIR}"/../backups
+BACKUPS="${ODS_DIR}/backups"
 WORKINGDIR="$(mktemp -d)"
 TIMESTAMP="$(date +%Y-%m-%d_%H-%M-%S)"
 
