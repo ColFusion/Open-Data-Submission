@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -o errexit
 
+# Usage: config_val CONFIG_FILE KEY
+function config_val()
+{
+    awk -F "=" "/$1/ "'{print $2}' "$2" | tr -d ' '
+}
+
 echo "Running backup.sh script as user: " $(whoami)
 
 ODS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/.. && pwd )"
@@ -10,10 +16,11 @@ BACKUPS="${ODS_DIR}/backups"
 WORKINGDIR="$(mktemp -d)"
 TIMESTAMP="$(date +%Y-%m-%d_%H-%M-%S)"
 
-MYSQL_SERVERNAME=TODO
-MYSQL_USERNAME=TODO
-MYSQL_PASSWORD=TODO
-MYSQL_DATABASE_NAME=TODO
+CONFIG_INI="${ODS_DIR}/config.ini"
+MYSQL_SERVERNAME="$(config_val "${CONFIG_INI}" mysql_servername)"
+MYSQL_USERNAME="$(config_val "${CONFIG_INI}" mysql_username)"
+MYSQL_PASSWORD="$(config_val "${CONFIG_INI}" mysql_password)"
+MYSQL_DATABASE_NAME="$(config_val "${CONFIG_INI}" mysql_database_name)"
 
 mkdir -p "${WORKINGDIR}/${TIMESTAMP}"
 
