@@ -1,10 +1,13 @@
 <?php
 
-require_once('DbCreds.php');
+$ini_array = parse_ini_file("../config.ini");
 
 class DbHandler {
 	private function getConnection() {
-		$conn = new mysqli(SERVERNAME, USERNAME, PASSWORD, DATABASE_NAME);
+		$conn = new mysqli($ini_array["mysql_servername"],
+				           $ini_array["mysql_username"],
+				           $ini_array["mysql_password"],
+				           $ini_array["mysql_database_name"]);
 
 		// Check connection
 		if ($conn->connect_error) {

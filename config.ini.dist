@@ -1,0 +1,8 @@
+; use section prefixes, as opposed to real sections, so grep can easily get the variables
+; Copy this file to config.ini and enter the real values there (that file is not in source control)
+
+mysql_servername = SERVERNAME
+mysql_username = USERNAME
+mysql_password = PASSWORD
+mysql_database_name = DATABASE_NAME
+
