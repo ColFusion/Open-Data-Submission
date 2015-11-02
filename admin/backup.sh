@@ -4,7 +4,7 @@ set -o errexit
 # Usage: config_val CONFIG_FILE KEY
 function config_val()
 {
-    awk -F "=" "/$1/ "'{print $2}' "$2" | tr -d ' '
+    awk -F "=" "/$2/ "'{print $2}' "$1" | tr -d ' '
 }
 
 echo "Running backup.sh script as user: " $(whoami)
