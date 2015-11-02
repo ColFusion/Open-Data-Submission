@@ -1,9 +1,8 @@
 <?php
 
-$ini_array = parse_ini_file("../config.ini");
-
 class DbHandler {
 	private function getConnection() {
+		$ini_array = parse_ini_file("../config.ini");
 		$conn = new mysqli($ini_array["mysql_servername"],
 				           $ini_array["mysql_username"],
 				           $ini_array["mysql_password"],
